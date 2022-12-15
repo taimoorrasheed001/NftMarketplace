@@ -147,7 +147,7 @@ if (preloader) {
               <header className="header-area">
       <nav className="navbar navbar-expand-lg">
         <div className="container">
-          {/* Navbar Brand */}<a className="navbar-brand" href="/"><img className="light-logo" src="img/core-img/logo.png" /><img className="dark-logo" src="img/core-img/logo-white.png" /></a>
+          {/* Navbar Brand */}<a className="navbar-brand" href="/"><img className="light-logo" src="img/core-img/logo.png" alt='img' /><img className="dark-logo" src="img/core-img/logo-white.png" alt='img' /></a>
           {/* Navbar Toggler */}
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#funtoNav" aria-controls="funtoNav" aria-expanded="false" aria-label="Toggle navigation"><i className="bi bi-grid" /></button>
           {/* Navbar */}
@@ -161,7 +161,7 @@ if (preloader) {
               {/* Search Form */}
               <ul className="navbar-nav navbar-nav-scroll my-2 my-lg-0">
                 <li><a href="/">Home</a></li>
-                <li className="ft-dd"><a href="#">Explore Art</a>
+                <li className="ft-dd"><a href="/">Explore Art</a>
                   <ul className="ft-dd-menu">
                     <li><a href="/art">Art</a></li>
                     <li><a href="/artists">Artists</a></li>
@@ -178,22 +178,22 @@ if (preloader) {
                   </ul>
                 </li>
                 <li><a href="/join_us">Join us</a></li>
-                <li className="ft-dd "><a className="btn btn-warning btn-sm rounded-pill mx-3" style={{width: 'fit-content', height: 'fit-content'}} >Connect Wallet</a>
+                <li className="ft-dd "><a href='/' className="btn btn-warning btn-sm rounded-pill mx-3" style={{width: 'fit-content', height: 'fit-content'}} >Connect Wallet</a>
                   <ul className="ft-dd-menu">
-                    <li><a href="#">MetaMask</a></li>
-                    <li><a href="#">Wallet Connect</a></li>
-                    <li><a href="#">Coinbase Wallet</a></li>
+                    <li><a href="/">MetaMask</a></li>
+                    <li><a href="/">Wallet Connect</a></li>
+                    <li><a href="/">Coinbase Wallet</a></li>
                   </ul>
                 </li>
               </ul>
               {/* User Dropdown */}
               {/*  */}
-              <a href="#"><img style={{width: '40px', borderRadius: '100px'}} src="https://www.pngkey.com/png/detail/921-9211985_blockchain-cryptocurrency-wallet-ethereum-dogecoin-free-ethereum-png.png" /></a>
+              <a href="/"><img style={{width: '40px', borderRadius: '100px'}} src="https://www.pngkey.com/png/detail/921-9211985_blockchain-cryptocurrency-wallet-ethereum-dogecoin-free-ethereum-png.png" alt='img' /></a>
             </div>
           </div>
         </div>
       </nav>
-              </header>
+    </header>
 
 
               {/* Breadcrumb */}
@@ -828,7 +828,7 @@ if (preloader) {
         <div className="row">
           {/* Footer Widget */}
           <div className="col-12 col-lg-5">
-            <div className="footer-widget-area mb-70 pe-lg-4 pe-xl-5 me-lg-4 me-xl-5 border-end"><a className="d-block mb-4" href="index.html"><img className="light-logo" src="img/core-img/logo.png" /><img className="dark-logo" src="img/core-img/logo-white.png" /></a>
+            <div className="footer-widget-area mb-70 pe-lg-4 pe-xl-5 me-lg-4 me-xl-5 border-end"><a className="d-block mb-4" href="index.html"><img className="light-logo" src="img/core-img/logo.png" alt='img'/><img className="dark-logo" src="img/core-img/logo-white.png" alt='img' /></a>
               <p>
                 We seek
                 beauty</p>

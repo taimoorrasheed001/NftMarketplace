@@ -12,7 +12,7 @@ function Activity() {
               <header className="header-area">
                 <nav className="navbar navbar-expand-lg">
                   <div className="container">
-                    {/* Navbar Brand */}<a className="navbar-brand" href="index.html"><img className="light-logo" src="img/core-img/logo.png" /><img className="dark-logo" src="img/core-img/logo-white.png" /></a>
+                    {/* Navbar Brand */}<a className="navbar-brand" href="index.html"><img className="light-logo" src="img/core-img/logo.png" alt='img'/><img className="dark-logo" src="img/core-img/logo-white.png" alt='img'/></a>
                     {/* Navbar Toggler */}
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#funtoNav" aria-controls="funtoNav" aria-expanded="false" aria-label="Toggle navigation"><i className="bi bi-grid" /></button>
                     {/* Navbar */}
@@ -49,7 +49,7 @@ function Activity() {
                         <li><a class="dropdown-item" href="settings.html"><i class="me-2 bi bi-gear"></i>Settings</a></li>
                       </ul>
                     </div> */}
-                        {/* Create New Button */}<a className="btn btn-warning btn-sm rounded-pill mx-3" >Connect Wallet</a>
+                        {/* Create New Button */}<a href='/' className="btn btn-warning btn-sm rounded-pill mx-3" >Connect Wallet</a>
                       </div>
                     </div>
                   </div>
@@ -184,7 +184,7 @@ function Activity() {
                   <div className="row">
                     {/* Footer Widget */}
                     <div className="col-12 col-lg-5">
-                      <div className="footer-widget-area mb-70 pe-lg-4 pe-xl-5 me-lg-4 me-xl-5 border-end"><a className="d-block mb-4" href="index.html"><img className="light-logo" src="img/core-img/logo.png" /><img className="dark-logo" src="img/core-img/logo-white.png" /></a>
+                      <div className="footer-widget-area mb-70 pe-lg-4 pe-xl-5 me-lg-4 me-xl-5 border-end"><a className="d-block mb-4" href="index.html"><img className="light-logo" src="img/core-img/logo.png" alt='img'/><img className="dark-logo" src="img/core-img/logo-white.png" alt='img'/></a>
                         <p>
                           We seek
                           beauty</p>

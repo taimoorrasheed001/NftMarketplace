@@ -1,9 +1,9 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useState} from 'react'
 import QRCodeModal from "@walletconnect/qrcode-modal";
 import WalletConnect from "@walletconnect/client";
 import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
-import axios from 'axios';
-import Web3Modal from "web3modal";
+// import axios from 'axios';
+// import Web3Modal from "web3modal";
 const INFURA_RPC_URL = `https://goerli.infura.io/v3/d108cbf7c0324759b58462e343d6cbe3`;
 const DEFAULT_CHAIN_ID = 1;
 window.Buffer = window.Buffer || require("buffer").Buffer; 
@@ -56,18 +56,18 @@ export const MarketplaceProvider = ({ children }) => {
     }
   };
 
-    const addWalletListener = async () => {
-    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
-      window.ethereum.on("accountsChanged", (accounts) => {
-        setWalletAddress(accounts[0]);
-        console.log(accounts[0]);
-      });
-    } else {
-      /* MetaMask is not installed */
-      setWalletAddress("");
-      console.log("Please install MetaMask");
-    }
-  };
+  //   const addWalletListener = async () => {
+  //   if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+  //     window.ethereum.on("accountsChanged", (accounts) => {
+  //       setWalletAddress(accounts[0]);
+  //       console.log(accounts[0]);
+  //     });
+  //   } else {
+  //     /* MetaMask is not installed */
+  //     setWalletAddress("");
+  //     console.log("Please install MetaMask");
+  //   }
+  // };
 
   //coinbase wallet 
 

@@ -143,112 +143,55 @@ function JoinUs() {
       </div>
       {/* Header Area*/}
       <header className="header-area">
-        <nav className="navbar navbar-expand-lg">
-          <div className="container">
-            {/* Navbar Brand */}
-            <a className="navbar-brand" href="/">
-              <img className="light-logo" src="img/core-img/logo.png" />
-              <img className="dark-logo" src="img/core-img/logo-white.png" />
-            </a>
-            {/* Navbar Toggler */}
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#funtoNav"
-              aria-controls="funtoNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <i className="bi bi-grid" />
-            </button>
-            {/* Navbar */}
-            <div className="collapse navbar-collapse" id="funtoNav">
-              <div className="search-form position-relative d-flex align-items-center">
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="Search"
-                />
-                <button className="position-absolute" type="submit" />
-              </div>
-              {/* Header Meta */}
-              <div className="header-meta d-flex align-items-center ms-lg-auto">
-                {/* Search Form */}
-                <ul className="navbar-nav navbar-nav-scroll my-2 my-lg-0">
-                  <li>
-                    <a href="/">Home</a>
-                  </li>
-                  <li className="ft-dd">
-                    <a href="#">Explore Art</a>
-                    <ul className="ft-dd-menu">
-                      <li>
-                        <a href="/art">Art</a>
-                      </li>
-                      <li>
-                        <a href="/artists">Artists</a>
-                      </li>
-                      <li>
-                        <a href="/digitize">Digitize your Art</a>
-                      </li>
-                      <li>
-                        <a href="/exhibition">Exhibitions</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a href="/">The Gat3s</a>
-                  </li>
-                  <li className="ft-dd">
-                    <a href="/about_us">About Us</a>
-                    <ul className="ft-dd-menu">
-                      <li>
-                        <a href="/faq">Faq</a>
-                      </li>
-                      <li>
-                        <a href="/term_Of_Service">Terms of service</a>
-                      </li>
-                      <li>
-                        <a href="/privacy_policy">Privacy Policy</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a href="/join_us">Join us</a>
-                  </li>
-                  <li className="ft-dd ">
-                    <a
-                      className="btn btn-warning btn-sm rounded-pill mx-3"
-                      style={{ width: "fit-content", height: "fit-content" }}
-                    >
-                      Connect Wallet
-                    </a>
-                    <ul className="ft-dd-menu">
-                      <li>
-                        <a href="#">MetaMask</a>
-                      </li>
-                      <li>
-                        <a href="#">Wallet Connect</a>
-                      </li>
-                      <li>
-                        <a href="#">Coinbase Wallet</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-                {/* User Dropdown */}
-                {/*  */}
-                <a href="#">
-                  <img
-                    style={{ width: "40px", borderRadius: "100px" }}
-                    src="https://www.pngkey.com/png/detail/921-9211985_blockchain-cryptocurrency-wallet-ethereum-dogecoin-free-ethereum-png.png"
-                  />
-                </a>
-              </div>
+      <nav className="navbar navbar-expand-lg">
+        <div className="container">
+          {/* Navbar Brand */}<a className="navbar-brand" href="/"><img className="light-logo" src="img/core-img/logo.png" alt='img' /><img className="dark-logo" src="img/core-img/logo-white.png" alt='img' /></a>
+          {/* Navbar Toggler */}
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#funtoNav" aria-controls="funtoNav" aria-expanded="false" aria-label="Toggle navigation"><i className="bi bi-grid" /></button>
+          {/* Navbar */}
+          <div className="collapse navbar-collapse" id="funtoNav">
+            <div className="search-form position-relative d-flex align-items-center">
+              <input className="form-control" type="text" placeholder="Search" />
+              <button className="position-absolute" type="submit" />
+            </div>
+            {/* Header Meta */}
+            <div className="header-meta d-flex align-items-center ms-lg-auto">
+              {/* Search Form */}
+              <ul className="navbar-nav navbar-nav-scroll my-2 my-lg-0">
+                <li><a href="/">Home</a></li>
+                <li className="ft-dd"><a href="/">Explore Art</a>
+                  <ul className="ft-dd-menu">
+                    <li><a href="/art">Art</a></li>
+                    <li><a href="/artists">Artists</a></li>
+                    <li><a href="/digitize">Digitize your Art</a></li>
+                    <li><a href="/exhibition">Exhibitions</a></li>
+                  </ul>
+                </li>
+                <li><a href="/">The Gat3s</a></li>
+                <li className="ft-dd"><a href="/about_us">About Us</a>
+                  <ul className="ft-dd-menu">
+                    <li><a href="/faq">Faq</a></li>
+                    <li><a href="/term_Of_Service">Terms of service</a></li>
+                    <li><a href="/privacy_policy">Privacy Policy</a></li>
+                  </ul>
+                </li>
+                <li><a href="/join_us">Join us</a></li>
+                <li className="ft-dd "><a href='/' className="btn btn-warning btn-sm rounded-pill mx-3" style={{width: 'fit-content', height: 'fit-content'}} >Connect Wallet</a>
+                  <ul className="ft-dd-menu">
+                    <li><a href="/">MetaMask</a></li>
+                    <li><a href="/">Wallet Connect</a></li>
+                    <li><a href="/">Coinbase Wallet</a></li>
+                  </ul>
+                </li>
+              </ul>
+              {/* User Dropdown */}
+              {/*  */}
+              <a href="/"><img style={{width: '40px', borderRadius: '100px'}} src="https://www.pngkey.com/png/detail/921-9211985_blockchain-cryptocurrency-wallet-ethereum-dogecoin-free-ethereum-png.png" alt='img' /></a>
             </div>
           </div>
-        </nav>
-      </header>
+        </div>
+      </nav>
+    </header>
       {/* Breadcrumb */}
       <div className="breadcrumb-wrapper">
         <div className="container">
@@ -359,6 +302,7 @@ function JoinUs() {
             <div className="col-12 col-lg-6">
               <div className="maps-wrap">
                 <iframe
+                title="frame4"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14047.882048906753!2d-0.14268817855593444!3d51.50701170390822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2sbd!4v1570696571917!5m2!1sen!2sbd"
                   allowFullScreen
                 />
@@ -380,10 +324,11 @@ function JoinUs() {
             <div className="col-12 col-lg-5">
               <div className="footer-widget-area mb-70 pe-lg-4 pe-xl-5 me-lg-4 me-xl-5 border-end">
                 <a className="d-block mb-4" href="index.html">
-                  <img className="light-logo" src="img/core-img/logo.png" />
+                  <img className="light-logo" src="img/core-img/logo.png" alt="img"/>
                   <img
                     className="dark-logo"
                     src="img/core-img/logo-white.png"
+                    alt="img"
                   />
                 </a>
                 <p>We seek beauty</p>
