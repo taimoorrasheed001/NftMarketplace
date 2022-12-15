@@ -306,7 +306,7 @@ function Main() {
               <div className="video_wrapper">
                 <div className="video_second_wrapper">
             <video autoPlay  loop muted="muted" height="NaN" width="100%" id="myVideo">
-             <source src="video/hero.mp4" type="video/mp4"/>
+             <source src="https://assets.blackdove.com/videos/BD_WEB_desk-Digital_Canvas_x_Braden.mp4" type="video/mp4"/>
 
               </video>
                     </div>
