@@ -305,7 +305,7 @@ function Main() {
             {/* <div className="col-12 col-sm-10 col-md-12"> */}
               <div className="video_wrapper">
                 <div className="video_second_wrapper">
-            <video preload="auto" autoplay="true" playsinline="true" loop="true" muted="muted" height="NaN" width="100%" id="myVideo">
+            <video autoPlay loop muted="muted" height="NaN" width="100%" id="myVideo">
              <source src="https://assets.blackdove.com/videos/BD_WEB_desk-Digital_Canvas_x_Braden.mp4" type="video/mp4"/>
 
               </video>
