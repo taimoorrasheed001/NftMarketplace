@@ -140,6 +140,19 @@ function Main() {
   }, []);
 
 
+  useEffect(() => {
+
+    var video = document.getElementById("myVideo");
+
+    if (video.muted) {
+      video.muted = false;
+    } else {
+      video.muted = true;
+      video.play();
+    }
+  }, []);
+
+
   return (
     <div>
       {/* Preloader*/}
@@ -311,7 +324,7 @@ function Main() {
               <video
                 autoPlay
                 loop
-                muted
+                muted="muted"
                 playsinline
                 height="NaN"
                 width="100%"
