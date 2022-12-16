@@ -1,6 +1,7 @@
 import React from 'react'
 import { MarketplaceContext } from "../Context/MarketplaceContext";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
     const {
@@ -67,8 +68,9 @@ function Navbar() {
                   <li className="ft-dd">
                     <a href="/">Explore Art</a>
                     <ul className="ft-dd-menu">
-                      <li>
-                        <a href="/art">Art</a>
+                      <li> 
+                        <Link to="/art">Art</Link>
+                        {/* <a href="/art">Art</a> */}
                       </li>
                       <li>
                         <a href="/artists">Artists</a>
