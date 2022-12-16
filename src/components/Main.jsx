@@ -3,6 +3,7 @@ import React from "react";
 import { tns } from "tiny-slider";
 // import slideToggle from "react-slide-toggle";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 // import { bootstrap } from "react-bootstrap";
 // import './style.css'
 
@@ -196,12 +197,12 @@ function Main() {
                   Artworks{" "}
                   <span>
                     {" "}
-                    <a
+                    <Link
                       class="btn ms-2 rounded-pill btn-outline-primary btn-sm border-2"
-                      href="exhibition.html"
+                      to="/exhibition"
                     >
                       Browse all artwork
-                    </a>
+                    </Link>
                   </span>
                 </h2>
               </div>
@@ -1343,15 +1344,15 @@ function Main() {
                     modi{" "}
                   </p>
 
-                  <a href="/join_us">
-                    {" "}
+                  <Link to="/join_us">
+                   
                     <button
                       className="btn btn-lg btn-outline-info btn-custom"
                       width="50"
                     >
                       Apply Now
-                    </button>{" "}
-                  </a>
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

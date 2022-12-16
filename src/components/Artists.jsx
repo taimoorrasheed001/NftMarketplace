@@ -2,6 +2,7 @@ import React from 'react'
 import { tns } from 'tiny-slider';
 
 import {useEffect} from 'react';
+import { Link } from 'react-router-dom';
 
 function Artists() {
   
@@ -174,7 +175,7 @@ if (preloader) {
                               </div>
                             </div>
                             <div className="col-8">
-                              <div className="name-author"><a className="name d-block hover-primary fw-bold text-truncate" href="/artist_details">socsols<i className="bi bi-patch-check-fill ms-2 text-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Verified" /></a><a className="author d-block fz-14 hover-primary text-truncate" href="/artist_details">@designing_world</a>
+                              <div className="name-author"><Link className="name d-block hover-primary fw-bold text-truncate" to="/artist_details">socsols<i className="bi bi-patch-check-fill ms-2 text-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Verified" /></Link><Link className="author d-block fz-14 hover-primary text-truncate" href="/artist_details">@designing_world</Link>
                                 {/* <div className="price-bid d-flex align-items-center mt-3">
                                   <div className="price me-3">
                                     <h6 className="mb-0 d-inline-block fz-14 border border-2 rounded py-1 px-2">0.3 ETH</h6>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { tns } from 'tiny-slider';
 import {useEffect} from 'react';
+import { Link } from 'react-router-dom';
 // import banner from './'
 
 function Exhibition() {
@@ -158,7 +159,7 @@ if (preloader) {
                     </nav>
                 </div>
               </div>
-              <div className="container mt-2">   <h4>Welcome to Get3</h4></div>
+              <div className="container mt-2"><h4>Welcome to Get3</h4></div>
               <div className="divider" />
 
               <div className="collection-wrapper">
@@ -168,45 +169,45 @@ if (preloader) {
                   <div className="row g-4">
                     <div className="col-12 col-md-6 col-xl-6">
                      <div className="">
-                      <a href="/exhibition-artist">
+                      <Link to="/exhibition-artist">
                         <div className="">
                           <img src="img/core-img/img2.jpg" alt="" />
                         </div>
                        <h2 className='mt-2'>Digital Exhibitions</h2>
-                      </a>
+                      </Link>
                      </div>
                     </div>
 
                     <div className="col-12 col-md-6 col-xl-6">
                     <div className="">
-                      <a href="/coming_soon">
+                      <Link to="/coming_soon">
                         <div className="">
                           <img src="img/core-img/img1.jpg" alt="" />
                         </div>
                         <h2 className='mt-2'>IRL Exhibitions</h2>
-                      </a>
+                      </Link>
                      </div>
                     </div>
 
                     <div className="col-12 col-md-6 col-xl-6">
                     <div className="">
-                      <a href="/coming_soon">
+                      <Link to="/coming_soon">
                         <div className="">
                           <img src="img/core-img/img1.jpg" alt="" />
                         </div>
                         <h2 className='mt-2'>IRL Exhibitions</h2>
-                      </a>
+                      </Link>
                      </div>
                     </div>
 
                     <div className="col-12 col-md-6 col-xl-6">
                     <div className="">
-                      <a href="/coming_soon">
+                      <Link to="/coming_soon">
                         <div className="">
                           <img src="img/core-img/img1.jpg" alt="" />
                         </div>
                         <h2 className='mt-2'>IRL Exhibitions</h2>
-                      </a>
+                      </Link>
                      </div>
                     </div>
 

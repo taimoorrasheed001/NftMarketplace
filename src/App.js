@@ -75,6 +75,7 @@ function App() {
         {/* <Route path="/nav" element={} /> */}
 
      </Routes>
+     
      </MarketplaceProvider>
      </Web3ReactProvider>
     </div>
