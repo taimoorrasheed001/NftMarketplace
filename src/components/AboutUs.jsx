@@ -224,9 +224,9 @@ if (preloader) {
    
             <div>
               {/* Preloader*/}
-              <div className="preloader" id="preloader">
+            {/* <div className="preloader" id="preloader">
                 <div className="spinner-border text-primary" role="status"><span className="visually-hidden">Loading...</span></div>
-              </div>
+              </div> */}
               {/* Header Area*/}
 
               {/* Breadcrumb */}

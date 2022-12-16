@@ -63,28 +63,37 @@ function Navbar() {
                 {/* Search Form */}
                 <ul className="navbar-nav navbar-nav-scroll my-2 my-lg-0">
                   <li>
-                    <a href="/">Home</a>
+               
+                    <Link to="/">Home</Link>
                   </li>
                   <li className="ft-dd">
-                    <a href="/">Explore Art</a>
+                    
+                    <Link to="/">Explore Art</Link>
                     <ul className="ft-dd-menu">
                       <li> 
                         <Link to="/art">Art</Link>
                         {/* <a href="/art">Art</a> */}
                       </li>
                       <li>
-                        <a href="/artists">Artists</a>
+                      <Link to="/artists">ArtistsArtists</Link>
+                        
                       </li>
                       <li>
-                        <a href="/digitize">Digitize your Art</a>
+                      <Link to="/digitize">Digitize your Art</Link>
+
+                    
                       </li>
                       <li>
-                        <a href="/exhibition">Exhibitions</a>
+                      <Link to="/exhibition">Exhibitions</Link>
+
+                       
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <a href="/">The Gat3s</a>
+                  <Link to="/">The Gat3s</Link>
+
+               
                   </li>
                   <li className="ft-dd">
                     <a href="/about_us">About Us</a>
@@ -101,59 +110,60 @@ function Navbar() {
                     </ul>
                   </li>
                   <li>
-                    <a href="/join_us">Join us</a>
+                  <Link to="/join_us">Join us</Link>
+                  
                   </li>
 
 
                   <li className="ft-dd ">
-                    <a
-                      href="#0"
+                    <Link
+                  
                       className="btn btn-warning btn-sm rounded-pill mx-3"
                       style={{ width: "fit-content", height: "fit-content" }}
                     >
                       {walletAddress !== null ? (
-                        <a
-                          href="#0"
+                        <Link
+                      
                           onClick={() => {
                             onDisconnect();
                           }}
                         >
                           Disconnect
-                        </a>
+                        </Link>
                       ) : (
                         "Connect Wallet"
                       )}
-                    </a>
+                    </Link>
                     <ul className="ft-dd-menu">
                       <li>
-                        <a
-                          href="#0"
+                        <Link
+                          
                           onClick={() => {
                             connectWallet();
                           }}
                         >
                           MetaMask
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href="#0"
+                        <Link
+             
                           onClick={() => {
                             walletConnect();
                           }}
                         >
                           Wallet Connect
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href="#0"
+                        <Link
+                          
                           onClick={() => {
                             activate(CoinbaseWallet);
                           }}
                         >
                           Coinbase Wallet
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
@@ -162,38 +172,38 @@ function Navbar() {
                 {/*  */}
                 { walletAddress !== null ?
                 <li className="ft-dd">
-                <a href="#0"
+                <Link
                 style={{ width: "fit-content", height: "fit-content" }}>
                   <img
                     style={{ width: "40px", borderRadius: "100px" }}
                     src="https://www.pngkey.com/png/detail/921-9211985_blockchain-cryptocurrency-wallet-ethereum-dogecoin-free-ethereum-png.png"
                     alt="img"
                   />
-                </a>
+                </Link>
 
                 <ul className="ft-dd-menu">
                       <li>
-                        <a
-                          href="#0"
+                        <Link
+                         to="/"
                         >
                           Profile
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href="#0"
+                        <Link
+                           to="/"
                         
                         >
                           Favorites
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href="#0"
+                        <Link
+                           to="/"
                          
                         >
                          Logout
-                        </a>
+                        </Link>
                       </li>
                     </ul>
 
