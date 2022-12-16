@@ -1,7 +1,7 @@
 {
   "name": "gat3",
   "version": "0.1.0",
-  "homepage": "http://www.badlandsnfts.com/getwebsite",
+
   "private": true,
   "dependencies": {
     "@coinbase/wallet-sdk": "^3.6.2",
