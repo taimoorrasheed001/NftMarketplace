@@ -12,7 +12,8 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
     Counters.Counter private _tokenIds;
     Counters.Counter private _nftCount;
     Counters.Counter private _categoryId;
-    uint256 public LISTING_FEE = 0.0001 ether;
+    // uint256 public SELLING_FEE = 0.0001 ether;
+    uint256 public SELLING_FEE;
     address payable private _marketOwner;
 
     mapping(uint256 => NFT) public _idToNFT;
@@ -20,7 +21,8 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
     mapping(address => bool) public isBlacklisted;
     // mapping( => uint256) public nftCategory;
     mapping(uint256 => string) public nftCategory;
-    mapping(uint256 => uint []) private findTokenCategory;
+    mapping(uint256 => uint256[]) private findTokenCategory;
+    mapping(uint256 => uint256) private promo;
 
     struct NFT {
         uint256 tokenId;
@@ -56,7 +58,8 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
 
     event BlacklistedRemoved(address remover, address removed);
 
-    constructor() ERC721("MyToken", "MTK") {
+    constructor(uint256 _sellingFeePerInBips) ERC721("Get3", "GT") {
+        SELLING_FEE = _sellingFeePerInBips;
         _marketOwner = payable(msg.sender);
     }
 
@@ -70,21 +73,45 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
         _;
     }
 
-   
     //Functions
 
+    // update selling fee
+
+    function updateSellingFee(uint256 _valueInBips) public onlyOwner {
+        SELLING_FEE = _valueInBips;
+    }
+
+    //set promo
+    function setPromo(uint256 _promoId, uint256 _discountPer) public onlyOwner {
+        require(_promoId > 0, "Id must be > 0");
+        promo[_promoId] = _discountPer;
+    }
+
+    // calculate Discount
+    function calculateDiscount(uint256 price, uint256 promoId)
+        public
+        view
+        returns (uint256)
+    {
+        return (price * promo[promoId]) / 10000;
+    }
+
     //set category
-    function setCategory(string memory category)public onlyOwner{
+    function setCategory(string memory category) public onlyOwner {
         _categoryId.increment();
         uint256 newCateId = _categoryId.current();
 
         nftCategory[newCateId] = category;
     }
 
-
-    function nftsInCategory(uint256 _categoryId) public view returns (uint[] memory){
+    //Nfts in category
+    function nftsInCategory(uint256 _categoryId)
+        public
+        view
+        returns (uint256[] memory)
+    {
         return findTokenCategory[_categoryId];
-  }   
+    }
 
     /**
      * @dev BlacklistAddRemove allow owner to Blacklist artist.
@@ -114,10 +141,13 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
      * Emits a {NFTMinted} event.
      */
 
-    function mintNft(string memory tokenURI,uint categoryId) public isBlacklistedCheck {
+    function mintNft(string memory tokenURI, uint256 categoryId)
+        public
+        isBlacklistedCheck
+    {
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
-         _nftCount.increment();
+        _nftCount.increment();
         _idToNFT[newItemId].owner = msg.sender;
         _idToNFT[newItemId].creator = msg.sender;
         _idToNFT[newItemId].tokenId = newItemId;
@@ -125,7 +155,7 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
 
         _safeMint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
-         findTokenCategory[categoryId].push(newItemId);
+        findTokenCategory[categoryId].push(newItemId);
         // getNftDetails[msg.sender].tokenId = newItemId;
         // getNftDetails[msg.sender].creator = msg.sender;
         // getNftDetails[msg.sender].owner = msg.sender;
@@ -141,31 +171,33 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
      * Emits a {NFTListed} event.
      */
 
-    function listMarketItem(uint256 _tokenId, uint256 _price,uint categoryId)
-        public
-        payable
-        nonReentrant
-    {
+    function listMarketItem(
+        uint256 _tokenId,
+        uint256 _price,
+        uint256 categoryId,
+        uint256 _promoID
+    ) public nonReentrant {
         require(_price > 0, "Price must be at least 1 wei");
-        require(msg.value == LISTING_FEE, "Not enough ether for listing fee");
+        // require(msg.value == SELLING_FEE, "Not enough ether for listing fee");
 
         _transfer(msg.sender, address(this), _tokenId);
 
         _nftCount.increment();
+
+        uint256 price = calculateDiscount(_price, _promoID);
+        uint256 discountedPrice = _price - price;
 
         _idToNFT[_tokenId] = NFT(
             _tokenId,
             msg.sender,
             payable(msg.sender),
             payable(address(this)),
-            _price,
+            discountedPrice,
             nftCategory[categoryId],
             true,
             false
         );
 
-        
-       
         // getNftDetails[msg.sender] = NFT(
         //     _tokenId,
         //     msg.sender,
@@ -177,7 +209,14 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
         //     false
         // );
 
-        emit NFTListed(_tokenId, msg.sender, msg.sender, address(this), _price,nftCategory[categoryId]);
+        emit NFTListed(
+            _tokenId,
+            msg.sender,
+            msg.sender,
+            address(this),
+            _price,
+            nftCategory[categoryId]
+        );
     }
 
     /**
@@ -188,12 +227,12 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
      * Emits a {NFTListed} event.
      */
 
-    function createToken(string memory tokenURI, uint256 price,uint categoryId)
-        public
-        payable
-        isBlacklistedCheck
-        returns (uint256)
-    {
+    function createToken(
+        string memory tokenURI,
+        uint256 price,
+        uint256 categoryId,
+        uint256 _promoId
+    ) public isBlacklistedCheck returns (uint256) {
         _tokenIds.increment();
         uint256 newTokenId = _tokenIds.current();
 
@@ -201,31 +240,39 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
         _setTokenURI(newTokenId, tokenURI);
 
         require(price > 0, "Price must be at least 1 wei");
-        require(msg.value == LISTING_FEE, "Not enough ether for listing fee");
+        // require(msg.value == SELLING_FEE, "Not enough ether for listing fee");
 
         _transfer(msg.sender, address(this), newTokenId);
 
         _nftCount.increment();
+
+        uint256 _price = calculateDiscount(price, _promoId);
+        uint256 discountedPrice = price - _price;
 
         _idToNFT[newTokenId] = NFT(
             newTokenId,
             msg.sender,
             payable(msg.sender),
             payable(address(this)),
-            price,
+            discountedPrice,
             nftCategory[categoryId],
             true,
             false
         );
         findTokenCategory[categoryId].push(newTokenId);
 
-        emit NFTListed(newTokenId, msg.sender, msg.sender, address(this), price,nftCategory[categoryId]);
-        
+        emit NFTListed(
+            newTokenId,
+            msg.sender,
+            msg.sender,
+            address(this),
+            price,
+            nftCategory[categoryId]
+        );
+
         return newTokenId;
 
-        
         // nftCategory[category] = newTokenId;
-
 
         // getNftDetails[msg.sender] = NFT(
         //     newTokenId,
@@ -242,7 +289,7 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
     // List the NFT on the marketplace
     // function listNft(uint256 _tokenId, uint256 _price) private nonReentrant {
     //     require(_price > 0, "Price must be at least 1 wei");
-    //     require(msg.value == LISTING_FEE, "Not enough ether for listing fee");
+    //     require(msg.value == SELLING_FEE, "Not enough ether for listing fee");
 
     //     _transfer(msg.sender, address(this), _tokenId);
 
@@ -285,11 +332,16 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
             msg.value == nft.price / 1 wei,
             "Not enough ether to cover asking price"
         );
+
+        uint256 sellCommission = (nft.price * SELLING_FEE) / 10000;
+        uint256 amount = msg.value;
+        uint256 amountToSend = amount - sellCommission;
+
         address payable buyer = payable(msg.sender);
-        payable(nft.seller).transfer(msg.value);
+        payable(nft.seller).transfer(amountToSend);
 
         _transfer(address(this), buyer, nft.tokenId);
-        _marketOwner.transfer(LISTING_FEE);
+        _marketOwner.transfer(sellCommission);
 
         nft.owner = buyer;
         nft.listed = false;
@@ -300,17 +352,13 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
         // getNftDetails[msg.sender].sold = true;
 
         _nftsSold.increment();
-        emit NFTSold(nft.tokenId, nft.seller, buyer, msg.value,nft.category);
+        emit NFTSold(nft.tokenId, nft.seller, buyer, msg.value, nft.category);
     }
 
     // Resell an NFT purchased from the marketplace
-    function resellNft(uint256 _tokenId, uint256 _price)
-        public
-        payable
-        nonReentrant
-    {
+    function resellNft(uint256 _tokenId, uint256 _price) public nonReentrant {
         require(_price > 0, "Price must be at least 1 wei");
-        require(msg.value == LISTING_FEE, "Not enough ether for listing fee");
+        // require(msg.value == LISTING_FEE, "Not enough ether for listing fee");
 
         _transfer(msg.sender, address(this), _tokenId);
 
@@ -328,12 +376,24 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
         // getNftDetails[msg.sender].price = _price;
 
         _nftsSold.decrement();
-        emit NFTListed(_tokenId, msg.sender, msg.sender, address(this), _price,nft.category);
+        emit NFTListed(
+            _tokenId,
+            msg.sender,
+            msg.sender,
+            address(this),
+            _price,
+            nft.category
+        );
     }
 
-    function getListingFee() public view returns (uint256) {
-        return LISTING_FEE;
-    }
+    // uint public test;
+
+    // function getCommitionRate(uint _tokenId) public   returns (uint256) {
+    //       uint sellCommission = calculateDiscount(_idToNFT[_tokenId].price,SELLING_FEE);
+
+    //       test = sellCommission;
+    //    return sellCommission;
+    // }
 
     //Get Listed Nfts
     function getListedNfts() public view returns (NFT[] memory) {
@@ -411,6 +471,18 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
             }
         }
         return nfts;
+    }
+
+    //Airdrop
+
+    function airdrop(address[] calldata _to, uint256[] calldata _id) public {
+        require(
+            _to.length == _id.length,
+            "Receivers and amounts are differnt length"
+        );
+        for (uint256 i = 0; i < _to.length; i++) {
+            _transfer(msg.sender, _to[i], _id[i]);
+        }
     }
 
     function _burn(uint256 tokenId)

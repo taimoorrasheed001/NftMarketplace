@@ -27,17 +27,25 @@ import ExhibitionArtists from './components/ExhibitionArtists';
 import CreateNft from './components/CreateNft';
 import Favourite from './components/Favourite';
 import Notifications from './components/Notifications';
-
-
+import { Web3ReactProvider } from '@web3-react/core'
+import Web3 from 'web3'
+import Navbar  from './components/Navbar';
+  
+function getLibrary(provider) {
+  return new Web3(provider)
+}
 
 function App() {
   
+  
   return (
     <div className="App">
-      <MarketplaceProvider>
+      <Web3ReactProvider getLibrary={getLibrary}>
+      {/* <Component /> */}
+      <MarketplaceProvider >
+      <Navbar/>
 
         <Routes>
-
         <Route path="/" element={<Main/>} />
         <Route path="/digitizeOld" element={<Digitize/>} />
         <Route path="/artists" element={<Artists/>} />
@@ -64,9 +72,11 @@ function App() {
         <Route path="/create-nft" element={<CreateNft/>} />
         <Route path="/favourite" element={<Favourite/>} />
         <Route path="/notification" element={<Notifications/>} />
+        {/* <Route path="/nav" element={} /> */}
 
      </Routes>
      </MarketplaceProvider>
+     </Web3ReactProvider>
     </div>
   );
 }

@@ -2,6 +2,10 @@ import React, {useState} from 'react'
 import QRCodeModal from "@walletconnect/qrcode-modal";
 import WalletConnect from "@walletconnect/client";
 import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
+import { useWeb3React } from "@web3-react/core"
+// import { injected } from "./Connecters"
+import { WalletLinkConnector } from "@web3-react/walletlink-connector";
+// import { WalletConnectConnector } from "@web3-react/walletlink-connector";
 // import axios from 'axios';
 // import Web3Modal from "web3modal";
 const INFURA_RPC_URL = `https://goerli.infura.io/v3/d108cbf7c0324759b58462e343d6cbe3`;
@@ -11,6 +15,42 @@ window.Buffer = window.Buffer || require("buffer").Buffer;
 export const  MarketplaceContext = React.createContext();
 
 export const MarketplaceProvider = ({ children }) => {
+  const { active, account, activate, deactivate } = useWeb3React()
+  const refreshState = () => { window.localStorage.setItem("provider", undefined) };
+
+  const disconnect = () => {
+    refreshState();
+    deactivate();
+    
+  };
+
+  // async function connect() {
+  //   try {
+  //     await activate(injected)
+  //   } catch (ex) {
+  //     console.log(ex)
+  //   }
+  // }
+
+
+  const CoinbaseWallet = new WalletLinkConnector({
+
+    url: `https://mainnet.infura.io/v3/${INFURA_RPC_URL}`,
+   
+    appName: "Web3-react Demo",
+   
+    supportedChainIds: [1, 3, 4, 5, 42],
+   
+   });
+
+  // async function disconnect() {
+  //   try {
+  //     deactivate()
+  //   } catch (ex) {
+  //     console.log(ex)
+  //   }
+  // }
+
     const testTitles = "this test title"
 
     const [walletAddress, setWalletAddress] = useState("");
@@ -24,8 +64,9 @@ export const MarketplaceProvider = ({ children }) => {
           method: "eth_requestAccounts",
         });
         setWalletAddress(accounts[0]);
-        window.location.reload();
+        
         console.log(accounts[0]);
+        // window.location.reload();
       } catch (err) {
         console.error(err.message);
       }
@@ -97,10 +138,15 @@ export const MarketplaceProvider = ({ children }) => {
     if (!connector.connected) {
       // create new session
       await connector.createSession();
+    
     }
 
     // subscribe to events
     await this.subscribeToEvents();
+
+    setWalletAddress(connector);
+    window.location.reload();
+    console.log(connector);
   };
 
 
@@ -108,7 +154,9 @@ export const MarketplaceProvider = ({ children }) => {
     // await Web3Modal.clearCachedProvider();
     window.localStorage.clear();
     console.log('onDisconnect')
-    setWalletAddress(" ");
+    refreshState();
+    setWalletAddress(null);
+    console.log(walletAddress);
   }
   
 
@@ -118,6 +166,11 @@ export const MarketplaceProvider = ({ children }) => {
          value={{
             testTitles,
             connectWallet,
+            CoinbaseWallet,
+            account,
+            active,
+            activate,
+            disconnect,
             getCurrentWalletConnected,
             getCoinbaseWalletProvider,
             walletConnect,

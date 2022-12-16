@@ -945,10 +945,11 @@ table {
   position: absolute;
   width: 100%;
   height: 36px;
+  margin-left: 10px;
   z-index: 100;
   background-color: transparent;
   color:  #00152e;
-  top: 2px;
+  top: 5px;
   cursor: pointer;
   left: 0;
   display: -webkit-box;
