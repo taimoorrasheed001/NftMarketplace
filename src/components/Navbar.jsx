@@ -99,13 +99,18 @@ function Navbar() {
                     <a href="/about_us">About Us</a>
                     <ul className="ft-dd-menu">
                       <li>
-                        <a href="/faq">Faq</a>
+                      <Link to="/faq">Faq</Link>
+                        {/* <a href="/faq">Faq</a> */}
                       </li>
                       <li>
-                        <a href="/term_Of_Service">Terms of service</a>
+                      <Link to="/term_Of_Service">Terms of service</Link>
+
+                        {/* <a href="/term_Of_Service"></a> */}
                       </li>
                       <li>
-                        <a href="/privacy_policy">Privacy Policy</a>
+                      <Link to="/privacy_policy">Privacy Policy</Link>
+
+                        {/* <a href="/"></a> */}
                       </li>
                     </ul>
                   </li>
