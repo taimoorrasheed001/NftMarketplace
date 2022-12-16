@@ -75,7 +75,7 @@ function Navbar() {
                         {/* <a href="/art">Art</a> */}
                       </li>
                       <li>
-                      <Link to="/artists">ArtistsArtists</Link>
+                      <Link to="/artists">Artists</Link>
                         
                       </li>
                       <li>
