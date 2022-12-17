@@ -1,7 +1,7 @@
 import React from 'react'
 import { tns } from 'tiny-slider';
 // import slideToggle from "react-slide-toggle";
-import {useEffect} from 'react';
+import {useEffect,useState} from 'react';
 
 function CreateNft() {
 
@@ -245,6 +245,20 @@ if (document.querySelectorAll('.top-buyer-slide').length > 0) {
 
   }, []);
 
+  const [radioValue, setradioValue] = useState( );
+
+  const handleClickNew = () =>{
+    setradioValue(document.querySelector('#inlineRadio1').value)
+  };
+
+  const handleClick = () =>{
+    setradioValue(document.querySelector('#inlineRadio3').value)
+  };
+
+  
+  console.log(radioValue)
+
+
   return (
     
             <div>
@@ -366,7 +380,7 @@ if (document.querySelectorAll('.top-buyer-slide').length > 0) {
                             <div className="col-12">
                               <div className="form-group mb-4">
                                 <div className="form-check form-check-inline">
-                                  <input className="form-check-input" id="inlineRadio1" type="radio" name="inlineRadioOptions" defaultValue="option1" defaultChecked />
+                                  <input className="form-check-input" id="inlineRadio1" onClick={()=> {handleClickNew()}}  type="radio" name="inlineRadioOptions" defaultValue="option1" defaultChecked />
                                   <label className="form-check-label" htmlFor="inlineRadio1">Fixed price</label>
                                 </div>
                                 <div className="form-check form-check-inline">
@@ -374,7 +388,7 @@ if (document.querySelectorAll('.top-buyer-slide').length > 0) {
                                   <label className="form-check-label" htmlFor="inlineRadio2">Unlock Purchased</label>
                                 </div>
                                 <div className="form-check form-check-inline">
-                                  <input className="form-check-input" id="inlineRadio3" type="radio" name="inlineRadioOptions" defaultValue="option3" />
+                                  <input className="form-check-input" id="inlineRadio3" onClick={()=> {handleClick()}} type="radio" name="inlineRadioOptions" defaultValue="option3" />
                                   <label className="form-check-label" htmlFor="inlineRadio3">Open for bids</label>
                                 </div>
                               </div>
@@ -391,12 +405,19 @@ if (document.querySelectorAll('.top-buyer-slide').length > 0) {
                                 <input className="form-control" id="description" type="text" placeholder="Write short description" />
                               </div>
                             </div>
+                            { radioValue === "option3" ?
                             <div className="col-12 col-md-6">
                               <div className="form-group mb-4">
                                 <label className="mb-2 fz-16" htmlFor="price">Price</label>
-                                <input className="form-control" id="price" type="text" placeholder="0.324 ETH" />
+                                <input className="form-control" id="price" type="text" placeholder="0.324 ETH" disabled/>
                               </div>
+                            </div> :
+                            <div className="col-12 col-md-6">
+                            <div className="form-group mb-4">
+                              <label className="mb-2 fz-16" htmlFor="price">Price</label>
+                              <input className="form-control" id="price" type="text" placeholder="0.324 ETH" />
                             </div>
+                          </div>  }
                             <div className="col-12 col-md-6">
                               <div className="form-group mb-4">
                                 <label className="mb-2 fz-16" htmlFor="catagories">Catagory</label>
@@ -414,6 +435,7 @@ if (document.querySelectorAll('.top-buyer-slide').length > 0) {
                                 </select>
                               </div>
                             </div>
+                            {radioValue === "option3" ? <> 
                             <div className="col-12 col-sm-4">
                               <div className="form-group mb-4">
                                 <label className="mb-2 fz-16" htmlFor="startingDate">Starting Date</label>
@@ -425,7 +447,20 @@ if (document.querySelectorAll('.top-buyer-slide').length > 0) {
                                 <label className="mb-2 fz-16" htmlFor="endingDate">Ending Date</label>
                                 <input className="form-control" id="endingDate" type="date" />
                               </div>
+                            </div> </> : 
+                            <> 
+                            <div className="col-12 col-sm-4">
+                              <div className="form-group mb-4">
+                                <label className="mb-2 fz-16" htmlFor="startingDate">Starting Date</label>
+                                <input className="form-control" id="startingDate" type="date" disabled/>
+                              </div>
                             </div>
+                            <div className="col-12 col-sm-4">
+                              <div className="form-group mb-4">
+                                <label className="mb-2 fz-16" htmlFor="endingDate">Ending Date</label>
+                                <input className="form-control" id="endingDate" type="date" disabled/>
+                              </div>
+                            </div> </> }
                             <div className="col-12 col-lg-4">
                               <div className="form-group mb-4">
                                 <label className="mb-2 fz-16" htmlFor="royality">Royality</label>

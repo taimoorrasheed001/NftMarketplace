@@ -156,9 +156,6 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
         _safeMint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
         findTokenCategory[categoryId].push(newItemId);
-        // getNftDetails[msg.sender].tokenId = newItemId;
-        // getNftDetails[msg.sender].creator = msg.sender;
-        // getNftDetails[msg.sender].owner = msg.sender;
 
         emit NFTMinted(newItemId, msg.sender, msg.sender);
     }
@@ -197,17 +194,6 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
             true,
             false
         );
-
-        // getNftDetails[msg.sender] = NFT(
-        //     _tokenId,
-        //     msg.sender,
-        //     payable(msg.sender),
-        //     payable(address(this)),
-        //     _price,
-        //     category,
-        //     true,
-        //     false
-        // );
 
         emit NFTListed(
             _tokenId,
@@ -274,16 +260,7 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
 
         // nftCategory[category] = newTokenId;
 
-        // getNftDetails[msg.sender] = NFT(
-        //     newTokenId,
-        //     msg.sender,
-        //     payable(msg.sender),
-        //     payable(address(this)),
-        //     price,
-        //     category,
-        //     true,
-        //     false
-        // );
+ 
     }
 
     // List the NFT on the marketplace
@@ -347,9 +324,6 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
         nft.listed = false;
         nft.sold = true;
 
-        // getNftDetails[msg.sender].owner = buyer;
-        // getNftDetails[msg.sender].listed = false;
-        // getNftDetails[msg.sender].sold = true;
 
         _nftsSold.increment();
         emit NFTSold(nft.tokenId, nft.seller, buyer, msg.value, nft.category);
@@ -369,11 +343,6 @@ contract Marketplace is ERC721, ERC721URIStorage, ReentrancyGuard {
         nft.sold = false;
         nft.price = _price;
 
-        // getNftDetails[msg.sender].owner = address(this);
-        // getNftDetails[msg.sender].seller = payable(msg.sender);
-        // getNftDetails[msg.sender].listed = true;
-        // getNftDetails[msg.sender].sold = false;
-        // getNftDetails[msg.sender].price = _price;
 
         _nftsSold.decrement();
         emit NFTListed(

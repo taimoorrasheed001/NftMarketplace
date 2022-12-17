@@ -178,7 +178,8 @@ function Navbar() {
                 { walletAddress !== null ?
                 <li className="ft-dd">
                 <Link
-                style={{ width: "fit-content", height: "fit-content" }}>
+                // style={{ width: "fit-content", height: "fit-content" }}
+                >
                   <img
                     style={{ width: "40px", borderRadius: "100px" }}
                     src="https://www.pngkey.com/png/detail/921-9211985_blockchain-cryptocurrency-wallet-ethereum-dogecoin-free-ethereum-png.png"

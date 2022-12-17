@@ -1106,12 +1106,12 @@ function Main() {
                 </div>
               </div>
               <div class="col-5 text-end">
-                <a
+                <Link
                   class="btn rounded-pill btn-outline-primary btn-sm border-2"
-                  href="/artists"
+                  to="/artists"
                 >
                   Browse all artists
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -1121,7 +1121,7 @@ function Main() {
               {/* Single Card */}
 
               <div clasget3sName="wrapper justify-content-center">
-                <a href="/artist_details">
+                <Link to="/artist_details">
                   <div className="text-center">
                     <img
                       src="img/bg-img/u1.jpg"
@@ -1130,14 +1130,14 @@ function Main() {
                     />
                     <h6 className="justify-content-center">Soc</h6>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-2">
               {/* Single Card */}
 
               <div className="wrapper justify-content-center">
-                <a href="/artist_details">
+                <Link to="/artist_details">
                   <div className="text-center">
                     <img
                       src="img/bg-img/u4.jpg"
@@ -1146,14 +1146,14 @@ function Main() {
                     />
                     <h6 className="justify-content-center">Soc</h6>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-2">
               {/* Single Card */}
 
               <div className="wrapper justify-content-center">
-                <a href="/artist_details">
+                <Link to="/artist_details">
                   <div className="text-center">
                     <img
                       src="img/bg-img/u4.jpg"
@@ -1162,14 +1162,14 @@ function Main() {
                     />
                     <h6 className="justify-content-center">Soc</h6>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-2">
               {/* Single Card */}
 
               <div className="wrapper justify-content-center">
-                <a href="/artist_details">
+                <Link to="/artist_details">
                   <div className="text-center">
                     <img
                       src="img/bg-img/u2.jpg"
@@ -1178,14 +1178,14 @@ function Main() {
                     />
                     <h6 className="justify-content-center">Soc</h6>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-2">
               {/* Single Card */}
 
               <div className="wrapper justify-content-center">
-                <a href="/artist_details">
+                <Link to="/artist_details">
                   <div className="text-center">
                     <img
                       src="img/bg-img/u1.jpg"
@@ -1194,14 +1194,14 @@ function Main() {
                     />
                     <h6 className="justify-content-center">Soc</h6>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-2">
               {/* Single Card */}
 
               <div className="wrapper justify-content-center">
-                <a href="/artist_details">
+                <Link to="/artist_details">
                   <div className="text-center">
                     <img
                       src="img/bg-img/u1.jpg"
@@ -1210,7 +1210,7 @@ function Main() {
                     />
                     <h6 className="justify-content-center">Soc</h6>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -1266,12 +1266,12 @@ function Main() {
               </div>
             </div>
             <div class="col-5 text-end">
-              <a
+              <Link
                 class="btn rounded-pill btn-outline-primary btn-sm border-2"
-                href="/exhibition"
+                to="/exhibition"
               >
                 Browse all the Exhibitions
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -1281,23 +1281,23 @@ function Main() {
             <div className="row g-4">
               <div className="col-12 col-md-6 col-xl-6">
                 <div className="">
-                  <a href="/exhibition-artist">
+                  <Link to="/exhibition-artist">
                     <div className="">
                       <img src="img/core-img/img2.jpg" alt="" />
                     </div>
                     <h2 className="mt-2">Digital Exhibitions</h2>
-                  </a>
+                  </Link>
                 </div>
               </div>
 
               <div className="col-12 col-md-6 col-xl-6">
                 <div className="">
-                  <a href="/coming_soon">
+                  <Link to="/coming_soon">
                     <div className="">
                       <img src="img/core-img/img1.jpg" alt="" />
                     </div>
                     <h2 className="mt-2">IRL Exhibitions</h2>
-                  </a>
+                  </Link>
                 </div>
               </div>
 
