@@ -8,14 +8,14 @@ import ArtDetails from './components/ArtDetails';
 import ArtistDetails from './components/ArtistDetails';
 import Artists from './components/Artists';
 import ComingSoon from './components/ComingSoon';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Admin Dashboard/Dashboard';
 import Digitize from './components/Digitize';
 import Exhibition from './components/Exhibition';
 import FeaturedItems from './components/FeaturedItems';
 import LiveBidding from './components/LiveBidding';
-import LiveBids from './components/LiveBids';
+import LiveBids from './components/Admin Dashboard/LiveBids';
 import Main from './components/Main';
-import MyCollections from './components/MyCollections';
+import MyCollections from './components/Admin Dashboard/MyCollections';
 import MyWallet from './components/MyWallet';
 import JoinUs from './components/JoinUs';
 import TermsOfService from './components/TermsOfService';
@@ -24,13 +24,15 @@ import Faq from './components/Faq';
 import Sattings from './components/Sattings';
 import DigitizeNew from './components/DigitizeNew';
 import ExhibitionArtists from './components/ExhibitionArtists';
-import CreateNft from './components/CreateNft';
+import CreateNft from './components/Artist Dashboard/CreateNft';
 import Favourite from './components/Favourite';
 import Notifications from './components/Notifications';
 import ArtistDashboard from './components/Artist Dashboard/ArtistDashboard';
 import { Web3ReactProvider } from '@web3-react/core'
 import Web3 from 'web3'
 import Navbar  from './components/Navbar';
+import Footer from './components/Footer';
+import Get3 from './components/Get3';
   
 function getLibrary(provider) {
   return new Web3(provider)
@@ -41,11 +43,12 @@ function App() {
   
   return (
     <div className="App">
-      
+    
       <Web3ReactProvider getLibrary={getLibrary}>
       {/* <Component /> */}
       <MarketplaceProvider >
       <Navbar/>
+        <div className="">
 
         <Routes>
         <Route path="/" element={<Main/>} />
@@ -75,9 +78,12 @@ function App() {
         <Route path="/favourite" element={<Favourite/>} />
         <Route path="/notification" element={<Notifications/>} />
         <Route path="/artist_dashboard" element={<ArtistDashboard/>} />
+        <Route path="/get3" element={<Get3/>} />
 
      </Routes>
-    
+     </div>
+     <Footer/>
+  
      </MarketplaceProvider>
      </Web3ReactProvider>
     </div>

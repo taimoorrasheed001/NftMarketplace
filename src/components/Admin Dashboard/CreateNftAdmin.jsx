@@ -3,7 +3,7 @@ import { tns } from 'tiny-slider';
 // import slideToggle from "react-slide-toggle";
 import {useEffect,useState} from 'react';
 
-function CreateNft() {
+function CreateNftAdmin() {
 
   useEffect(() => {
     if (document.querySelectorAll('.featured-nfts-slide').length > 0) {
@@ -503,4 +503,4 @@ if (document.querySelectorAll('.top-buyer-slide').length > 0) {
   )
 }
 
-export default CreateNft
+export default CreateNftAdmin

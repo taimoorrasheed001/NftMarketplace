@@ -5,8 +5,9 @@ function Footer() {
   return (
     <>
       <footer
-        className="footer-area pb-120 pt-120"
-        style={{ backgroundImage: 'url("img/bg-img/1.jpg")' }}
+        className="footer-area  p-4"
+        // style={{ backgroundImage: 'url("img/bg-img/1.jpg")' }}
+        style={{ backgroundColor: '#2FC1FF ' }}
       >
         <div className="container">
           <div className="row">
@@ -25,7 +26,7 @@ function Footer() {
                     alt="img"
                   />
                 </Link>
-                <p>We seek beauty</p>
+                <h3>We seek beauty</h3>
                 <p className="mb-0">
                   {" "}
                   Email: <a href="mailto:abc@dummy.com">help@gat3.com</a>
@@ -77,20 +78,20 @@ function Footer() {
               <div className="row g-4">
                 <div className="col-6 col-sm-4">
                   <div className="footer-widget-area mb-70">
-                    <h5 class="mb-4">Marketplace</h5>
+                    {/* <h5 class="mb-4">Marketplace</h5> */}
                     <ul className="list-unstyled mb-0">
                       <li>
 
-                        <Link to="/art">Art</Link>
+                        <Link to="/about_us">About Us</Link>
                       </li>
                       <li>
-                        <Link to="/artist">Artists</Link>
+                        <Link to="/faq">FAQ</Link>
                       </li>
                       <li>
-                        <Link to="/exhibitions">Exhibitions</Link>
+                        <Link to="/term_Of_Service">Terms Of Service</Link>
                       </li>
                       <li>
-                        <Link to="/digitize">Digitize</Link>
+                        <Link to="/privacy_policy">Privacy Policy</Link>
                       </li>
                     </ul>
                   </div>

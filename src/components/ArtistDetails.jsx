@@ -104,29 +104,7 @@ function ArtistDetails() {
                       </div>
                     </div>
                     <div className="col-12 col-lg-8">
-                      <div className="row g-4 align-items-center justify-content-between">
-                        <div className="col-12 col-sm-6">
-                          <select className="filter-select bg-gray w-100">
-                            <option selected value={1}>Recently Added</option>
-                            <option value={2}>Recently Sold</option>
-                            <option value={3}>Ending Soon</option>
-                          </select>
-                        </div>
-                        <div className="col-12 col-sm-6">
-                          <select className="filter-select2 bg-gray w-100">
-                            <option selected value={1}>Art</option>
-                            <option value={2}>Cards</option>
-                            <option value={3}>Collectibles</option>
-                            <option value={4}>Domain</option>
-                            <option value={5}>Music</option>
-                            <option value={6}>Memes</option>
-                            <option value={7}>Photos</option>
-                            <option value={8}>Sports</option>
-                            <option value={9}>Videos</option>
-                            <option value={10}>Vitual Worlds</option>
-                          </select>
-                        </div>
-                      </div>
+                    
                       <div className="mb-4 d-block"> </div>
                       <div className="row g-4">
                         <div className="col-12 col-sm-6 col-lg-6">

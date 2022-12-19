@@ -1,4 +1,4 @@
-import React from 'react'
+// import React ,{useEffect}from 'react'
 import { MarketplaceContext } from "../Context/MarketplaceContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -17,6 +17,9 @@ function Navbar() {
         walletConnect,
         onDisconnect,
       } = useContext(MarketplaceContext);
+ 
+
+    
 
   return (
     <div>
@@ -96,23 +99,8 @@ function Navbar() {
                
                   </li>
                   <li className="ft-dd">
-                    <a href="/about_us">About Us</a>
-                    <ul className="ft-dd-menu">
-                      <li>
-                      <Link to="/faq">Faq</Link>
-                        {/* <a href="/faq">Faq</a> */}
-                      </li>
-                      <li>
-                      <Link to="/term_Of_Service">Terms of service</Link>
-
-                        {/* <a href="/term_Of_Service"></a> */}
-                      </li>
-                      <li>
-                      <Link to="/privacy_policy">Privacy Policy</Link>
-
-                        {/* <a href="/"></a> */}
-                      </li>
-                    </ul>
+                    {/* <a href="/about_us">About Us</a> */}
+                   
                   </li>
                   <li>
                   <Link to="/join_us">Join us</Link>
@@ -120,14 +108,15 @@ function Navbar() {
                   </li>
 
 
-                  <li className="ft-dd ">
+                  <li className="ft-dd " style={{backgroundColor: "#fffff"}}>
                     <Link
                   
-                      className="btn btn-warning btn-sm rounded-pill mx-3"
+                      className="btn btn-white btn-sm rounded-pill mx-3"
                       style={{ width: "fit-content", height: "fit-content" }}
                     >
                       {walletAddress === null ? (
                          "Connect Wallet"
+                         
                       ) : (
                         <Link
                       
@@ -136,12 +125,15 @@ function Navbar() {
                           }}
                         >
                           Disconnect
+
+                        
                         </Link>
                     
                         
                       )}
                     </Link>
-                    <ul className="ft-dd-menu">
+                    {walletAddress === null ? 
+                    <ul className="ft-dd-menu ul_custom" >
                       <li>
                         <Link
                           
@@ -173,6 +165,8 @@ function Navbar() {
                         </Link>
                       </li>
                     </ul>
+                    : " "
+                    }
                   </li>
                 
                 {/* User Dropdown */}
