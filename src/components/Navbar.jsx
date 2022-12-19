@@ -126,7 +126,9 @@ function Navbar() {
                       className="btn btn-warning btn-sm rounded-pill mx-3"
                       style={{ width: "fit-content", height: "fit-content" }}
                     >
-                      {walletAddress !== null ? (
+                      {walletAddress === null ? (
+                         "Connect Wallet"
+                      ) : (
                         <Link
                       
                           onClick={() => {
@@ -135,8 +137,8 @@ function Navbar() {
                         >
                           Disconnect
                         </Link>
-                      ) : (
-                        "Connect Wallet"
+                    
+                        
                       )}
                     </Link>
                     <ul className="ft-dd-menu">

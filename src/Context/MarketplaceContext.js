@@ -3,6 +3,8 @@ import QRCodeModal from "@walletconnect/qrcode-modal";
 import WalletConnect from "@walletconnect/client";
 import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
 import { useWeb3React } from "@web3-react/core";
+// import { create as ipfsHttpClient } from "ipfs-http-client";
+// import pinataSDK from "@pinata/sdk";
 // const axios = require("axios");
 // require('dotenv')
 // import { injected } from "./Connecters"
@@ -14,9 +16,14 @@ const INFURA_RPC_URL = `https://goerli.infura.io/v3/d108cbf7c0324759b58462e343d6
 const DEFAULT_CHAIN_ID = 1;
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
+
+// const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
 // import { NftMarketplaceAddress, NftMarketplaceABI } from "./Constants";
 
 export const MarketplaceContext = React.createContext();
+
+
+
 
 export const MarketplaceProvider = ({ children }) => {
   const { active, account, activate, deactivate } = useWeb3React();
@@ -37,7 +44,7 @@ export const MarketplaceProvider = ({ children }) => {
     supportedChainIds: [1, 3, 4, 5, 42],
   });
 
-  const [walletAddress, setWalletAddress] = useState("");
+  const [walletAddress, setWalletAddress] = useState(null);
 
   const connectWallet = async () => {
     if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
@@ -142,7 +149,10 @@ export const MarketplaceProvider = ({ children }) => {
 
 // Ipfs upload
 
-
+// const pinata = pinataSDK(
+//   "29f2f68990d82f588d4a",
+//   "ead631930d0e10c473e047fc3b9a493f43d0cd1002e4513d08b55e92bfdefff3"
+// );
 
 
 
