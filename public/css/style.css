@@ -1223,7 +1223,7 @@ table {
   display: block;
 }
 .footer-area .footer-widget-area ul li a:hover, .footer-area .footer-widget-area ul li a:focus {
-  color: #2FC1FF;
+  color: #000000;
 }
 .footer-area .footer-widget-area ul li:last-child a {
   margin-bottom: 0;
