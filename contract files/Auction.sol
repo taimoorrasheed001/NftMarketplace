@@ -89,7 +89,7 @@ contract Auction is Ownable, ReentrancyGuard {
     mapping(address => mapping(uint256 => uint256)) public bids;
     // mapping(address => nft_details)public nftSell;
     mapping(uint256 => auction_details) public auctionDetails;
-    mapping(address => uint[]) public getAuctions;
+    mapping(address => uint256[]) public getAuctions;
     mapping(uint256 => bool) public isIdExist;
     mapping(address => bool) public isOwner;
 
@@ -119,7 +119,7 @@ contract Auction is Ownable, ReentrancyGuard {
         _;
     }
 
-      modifier beforeStarting(uint256 _auctionId) {
+    modifier beforeStarting(uint256 _auctionId) {
         require(
             block.timestamp > auctionDetails[_auctionId].startTime,
             "Not Started Yet"
@@ -145,7 +145,6 @@ contract Auction is Ownable, ReentrancyGuard {
     //         "Not Started Yet"
     //     );
 
-
     //Functions
 
     function setNftAddrsOne(uint256 _auctionId, address _nftAddrs) private {
@@ -164,19 +163,18 @@ contract Auction is Ownable, ReentrancyGuard {
      * Emits a {AuctionEnded} event.
      */
 
-
     //auction id _ auto increment
     // nft auction jb hogi tw wo user k wallet s hamare auction waly contract pr ajayegi isse user usko wapsi auction pr nh list kr skta
     //auction create hua first step on front end
-    // first nft approve hogi 
+    // first nft approve hogi
     // smart contract ka auction function hit hoga
     // user jb bh bid krega tw wo price hume smart contract pr lekr ani h
     // auction function mai transferFrom run hoga phr nft user k wallet s auction waly contract pr ajayegi
     // aik function pr jo all auctions list huye hoge
     //aik function or hoga jahan user k wallet adress s ye get krenge k us specific user nai kitni auction start kre hain or unki details
     // auction k start time s phele auction start nh hoga
-    //end time pr auction pr jiski highest id hai usko nft transfer ho jayegi 
-    //auction end pr sary participants ko unke eth return ho jayege 
+    //end time pr auction pr jiski highest id hai usko nft transfer ho jayegi
+    //auction end pr sary participants ko unke eth return ho jayege
     //auction ka state jo h wo end pr chala jayega....
 
     function createAuction(
@@ -190,46 +188,47 @@ contract Auction is Ownable, ReentrancyGuard {
         //     auctionDetails[_auctionId].state != Auc_State.Running,
         //     "Already Inprogress"
         // );
-         _listedNfts.increment();
+        _listedNfts.increment();
         uint256 newItemId = _listedNfts.current();
         setNftAddrsOne(newItemId, _nftAddrs);
-        if(auctionDetails[newItemId].nft.ownerOf(_nftId) == msg.sender){
-       
-        auctionDetails[newItemId].auctioneer = payable(msg.sender);
-        auctionDetails[newItemId].startTime = _startTime;
-        auctionDetails[newItemId].endTime = _endTime;
-        auctionDetails[newItemId].state = Auc_State.Running;
-        auctionDetails[newItemId].bidInc = 1 ether;
-        auctionDetails[newItemId].nftId = _nftId;
-        auctionDetails[newItemId].nft = IERC721(_nftAddrs);
-        auctionDetails[newItemId].listed = true;
-        isOwner[msg.sender] = true;
+        if (auctionDetails[newItemId].nft.ownerOf(_nftId) == msg.sender) {
+            auctionDetails[newItemId].auctioneer = payable(msg.sender);
+            auctionDetails[newItemId].startTime = _startTime;
+            auctionDetails[newItemId].endTime = _endTime;
+            auctionDetails[newItemId].state = Auc_State.Running;
+            auctionDetails[newItemId].bidInc = 1 ether;
+            auctionDetails[newItemId].nftId = _nftId;
+            auctionDetails[newItemId].nft = IERC721(_nftAddrs);
+            auctionDetails[newItemId].listed = true;
+            isOwner[msg.sender] = true;
 
-        auctionDetails[newItemId].nft.transferFrom(msg.sender, address(this), _nftId);
+            auctionDetails[newItemId].nft.transferFrom(
+                msg.sender,
+                address(this),
+                _nftId
+            );
 
-        getAuctions[msg.sender].push(newItemId);
-        isIdExist[newItemId] = true;
+            getAuctions[msg.sender].push(newItemId);
+            isIdExist[newItemId] = true;
 
-        emit AuctionCreated(
-            msg.sender,
-            _nftAddrs,
-            _nftId,
-            newItemId,
-            _startTime,
-            _endTime,
-            true
-        );
-        }else{
-             _listedNfts.decrement();
-             revert("not a owner of nft");
+            emit AuctionCreated(
+                msg.sender,
+                _nftAddrs,
+                _nftId,
+                newItemId,
+                _startTime,
+                _endTime,
+                true
+            );
+        } else {
+            _listedNfts.decrement();
+            revert("not a owner of nft");
         }
     }
 
-
-    function userAucitons() public view returns (uint[] memory){
+    function userAucitons() public view returns (uint256[] memory) {
         return getAuctions[msg.sender];
-  }   
-
+    }
 
     /**
      * @dev cancelAuc is used to cancel the auction.
@@ -241,11 +240,14 @@ contract Auction is Ownable, ReentrancyGuard {
     function cancelAuc(uint256 _auctionId) public findId(_auctionId) {
         require(isOwner[msg.sender] == true, "only Owner");
         auctionDetails[_auctionId].state = Auc_State.Cancelled;
-        auctionDetails[_auctionId].nft.transferFrom(address(this), msg.sender, auctionDetails[_auctionId].nftId);
+        auctionDetails[_auctionId].nft.transferFrom(
+            address(this),
+            msg.sender,
+            auctionDetails[_auctionId].nftId
+        );
         auctionDetails[_auctionId].listed = false;
         emit AuctionCancelled(msg.sender, _auctionId, block.timestamp);
     }
-
 
     //End Auction
     function endAuc(uint256 _auctionId) public findId(_auctionId) {
@@ -263,8 +265,6 @@ contract Auction is Ownable, ReentrancyGuard {
     function currentTime() public view returns (uint256) {
         return block.timestamp;
     }
-
-
 
     //Bid
     function bid(uint256 _auctionId)
@@ -310,8 +310,6 @@ contract Auction is Ownable, ReentrancyGuard {
         }
     }
 
-    
-
     //Finalized Auction
     function finalizeAuc(uint256 _auctionId) public findId(_auctionId) {
         // require(isIdExist[_auctionId] == true, "Id not found");
@@ -330,70 +328,63 @@ contract Auction is Ownable, ReentrancyGuard {
         uint256 value;
 
         if (auctionDetails[_auctionId].state == Auc_State.Cancelled) {
-            person = payable(msg.sender);
-            value = bids[msg.sender][_auctionId];
-            auctionDetails[_auctionId].state = Auc_State.Cancelled;
-        } else {
             if (msg.sender == auctionDetails[_auctionId].highestBidder) {
-                     person = auctionDetails[_auctionId].highestBidder;
-                    value =
-                        bids[auctionDetails[_auctionId].highestBidder][
-                            _auctionId
-                        ] -
-                        auctionDetails[_auctionId].highestPayableBid;
+                person = auctionDetails[_auctionId].highestBidder;
+                value = bids[auctionDetails[_auctionId].highestBidder][
+                    _auctionId
+                ];
 
-                    auctionDetails[_auctionId].nft.transferFrom(
-                        address(this),
-                        msg.sender,
-                        auctionDetails[_auctionId].nftId
-                    );
-                    
-                    auctionDetails[_auctionId].state = Auc_State.Ended;
-                    auctionDetails[_auctionId].listed = false;
+                 bids[auctionDetails[_auctionId].highestBidder][_auctionId] -
+                    auctionDetails[_auctionId].highestPayableBid;
 
-                    emit AuctionFinalized(
-                        auctionDetails[_auctionId].auctioneer,
-                        msg.sender,
-                        _auctionId,
-                        auctionDetails[_auctionId].highestPayableBid,
-                        block.timestamp
-                    );
+                    emit AuctionRefunded(
+                    msg.sender,
+                    bids[msg.sender][_auctionId],
+                    _auctionId
+                );
             } else {
-                
-        
-                if (msg.sender == auctionDetails[_auctionId].auctioneer) {
-
+                person = payable(msg.sender);
+                value = bids[msg.sender][_auctionId];
+                auctionDetails[_auctionId].state = Auc_State.Cancelled;
+            }
+        } else {
+            if (msg.sender == auctionDetails[_auctionId].auctioneer) {
                 person = auctionDetails[_auctionId].auctioneer;
                 value = auctionDetails[_auctionId].highestPayableBid;
 
-                   auctionDetails[_auctionId].nft.transferFrom(
-                        address(this),
-                        auctionDetails[_auctionId].highestBidder,
-                        auctionDetails[_auctionId].nftId
-                    );
-                    
+                auctionDetails[_auctionId].nft.transferFrom(
+                    address(this),
+                    auctionDetails[_auctionId].highestBidder,
+                    auctionDetails[_auctionId].nftId
+                );
+
                 auctionDetails[_auctionId].highestPayableBid = 0;
                 auctionDetails[_auctionId].state = Auc_State.Ended;
                 auctionDetails[_auctionId].listed = false;
 
-
-                } else {
-                    person = payable(msg.sender);
-                    value = bids[msg.sender][_auctionId];
-                    auctionDetails[_auctionId].state = Auc_State.Ended;
-                    auctionDetails[_auctionId].listed = false;
-                    emit AuctionRefunded(
-                        msg.sender,
-                        bids[msg.sender][_auctionId],
-                        _auctionId
-                    );
-                }
+                emit AuctionFinalized(
+                    auctionDetails[_auctionId].auctioneer,
+                    msg.sender,
+                    _auctionId,
+                    auctionDetails[_auctionId].highestPayableBid,
+                    block.timestamp
+                );
+            } else {
+                require(msg.sender != auctionDetails[_auctionId].highestBidder);
+                person = payable(msg.sender);
+                value = bids[msg.sender][_auctionId];
+                auctionDetails[_auctionId].state = Auc_State.Ended;
+                auctionDetails[_auctionId].listed = false;
+                emit AuctionRefunded(
+                    msg.sender,
+                    bids[msg.sender][_auctionId],
+                    _auctionId
+                );
             }
         }
         bids[msg.sender][_auctionId] = 0;
         person.transfer(value);
     }
-
 
     //Get Listed Nfts
     function getListedNfts() public view returns (auction_details[] memory) {
@@ -410,5 +401,5 @@ contract Auction is Ownable, ReentrancyGuard {
         }
         return nfts;
     }
-
 }
+
