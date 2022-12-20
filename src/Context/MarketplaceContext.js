@@ -123,7 +123,7 @@ export const MarketplaceProvider = ({ children }) => {
     const connector = new WalletConnect({ bridge, qrcodeModal: QRCodeModal });
 
     // await this.setState({ connector });
-
+    setWalletAddress(connector);
     // check if already connected
     if (!connector.connected) {
       // create new session

@@ -108,18 +108,21 @@ function Navbar() {
                   </li>
 
 
-                  <li className="ft-dd " style={{backgroundColor: "#fffff"}}>
+                  <li className="ft-dd" style={{backgroundColor: "#fffff"}}>
                     <Link
                   
                       className="btn btn-white btn-sm rounded-pill mx-3"
-                      style={{ width: "fit-content", height: "fit-content" }}
+                      style={{ width: "fit-content", height: "fit-content",  zIndex:"1000" }}
                     >
                       {walletAddress === null ? (
                          "Connect Wallet"
                          
                       ) : (
                         <Link
+                       
                       
+                        style={{ width: "fit-content", height: "fit-content" , zIndex:"1000"}}
+
                           onClick={() => {
                             onDisconnect();
                           }}
@@ -132,8 +135,9 @@ function Navbar() {
                         
                       )}
                     </Link>
+
                     {walletAddress === null ? 
-                    <ul className="ft-dd-menu ul_custom" >
+                    <ul className="ft-dd-menu" >
                       <li>
                         <Link
                           
@@ -168,50 +172,61 @@ function Navbar() {
                     : " "
                     }
                   </li>
-                
+
+
+
+                  
                 {/* User Dropdown */}
                 {/*  */}
-                { walletAddress !== null ?
-                <li className="ft-dd">
-                <Link
-                // style={{ width: "fit-content", height: "fit-content" }}
-                >
-                  <img
-                    style={{ width: "40px", borderRadius: "100px" }}
-                    src="https://www.pngkey.com/png/detail/921-9211985_blockchain-cryptocurrency-wallet-ethereum-dogecoin-free-ethereum-png.png"
-                    alt="img"
-                  />
-                </Link>
-
-                <ul className="ft-dd-menu">
-                      <li>
-                        <Link
-                         to="/"
-                        >
-                          Profile
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                           to="/"
-                        
-                        >
-                          Favorites
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                           to="/"
-                         
-                        >
-                         Logout
-                        </Link>
-                      </li>
-                    </ul>
-
+                { walletAddress === null ?
                 
-                </li> : " "}
-               
+       ""
+             
+                 :       
+                 <li className="ft-dd">
+                   <Link 
+             
+                   style={{ width: "fit-content", height: "fit-content",  zIndex:"1000" }}>
+                   <img
+                     style={{ width: "40px", borderRadius: "100px" }}
+                     src="https://www.pngkey.com/png/detail/921-9211985_blockchain-cryptocurrency-wallet-ethereum-dogecoin-free-ethereum-png.png"
+                     alt="img"
+                   />
+                   </Link>
+                   {/* <div className="dropdown-toggler">
+                   <i className="bi bi-caret-down-fill"></i>
+                 </div>
+                 */}
+                 <ul className="ft-dd-menu" >
+          
+                
+                       <li>
+                         <Link
+                          to="/"
+                         >
+                           Profile
+                         </Link>
+                       </li>
+                       <li>
+                         <Link
+                            to="/"
+                         
+                         >
+                           Favorites
+                         </Link>
+                       </li>
+                       <li>
+                         <Link
+                            to="/"
+                          
+                         >
+                          Logout
+                         </Link>
+                       </li>
+                     </ul>
+ 
+                     </li>}
+                 
                 </ul>
               </div>
             </div>
